@@ -2,14 +2,6 @@ use sqlx::postgres::PgPool;
 use crate::error::SelfDefinedError;
 use crate::models::author::{self, Author, CreateAuthor, UpdateAuthor};
 
-// pub async fn get_all_author_db(pool: &PgPool) -> Result<Vec<Author>, SelfDefinedError> {
-//     let row = sqlx::query!("SELECT id, name, picture_url, profile FROM author")
-//             .fetch_all(pool)
-//             .await?;
-
-//     let author: Vec<Author> = row.iter().
-// }
-
 pub async fn get_all_author_db(pool: &PgPool) -> Result<Vec<Author>, SelfDefinedError> {
     let rows = sqlx::query!("SELECT id, name, picture_url, profile FROM author")
         .fetch_all(pool)

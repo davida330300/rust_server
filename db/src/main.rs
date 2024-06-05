@@ -20,7 +20,7 @@ async fn main() -> io::Result<()> {
         .connect(&database_url)
         .await
         .unwrap();
-    let course_rows = sqlx::query!(
+    let book_rows = sqlx::query!(
         r#"select id, author_id, name, time from book where id = $1"#,
         1
     )
@@ -29,7 +29,7 @@ async fn main() -> io::Result<()> {
     .unwrap();
 
     let mut book_list = vec![];
-    for row in course_rows {
+    for row in book_rows {
         book_list.push(Book {
             id: row.id,
             author_id: row.author_id,
@@ -37,7 +37,7 @@ async fn main() -> io::Result<()> {
             time: Some(chrono::NaiveDateTime::from(row.time.unwrap())),
         })
     }
-    println!("Courses = {:?}", book_list);
+    println!("book = {:?}", book_list);
 
     Ok(())
 }

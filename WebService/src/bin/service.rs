@@ -38,6 +38,7 @@ pub async fn main() -> io::Result<()> {
             .app_data(shared_data.clone())
             .configure(general_routes)
             .configure(book_routes)
+            .configure(author_routes)
     };
 
      HttpServer::new(app).bind("127.0.0.1:3000")?.run().await
