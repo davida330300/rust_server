@@ -53,7 +53,7 @@ pub async fn handle_register(
             .render("register.html", &ctx)
             .map_err(|err| WebAppError::TeraError(err.to_string()))?;
     } else {
-        let new_teacher = json!({
+        let new_author = json!({
             "name": &params.name,
             "picture_url": &params.picture_url,
             "profile": &params.profile,
@@ -61,7 +61,7 @@ pub async fn handle_register(
         let awc_client = awc::Client::default();
         let res = awc_client
             .post("http://localhost:3000/author/")
-            .send_json(&new_teacher)
+            .send_json(&new_author)
             .await
             .unwrap()
             .body()
